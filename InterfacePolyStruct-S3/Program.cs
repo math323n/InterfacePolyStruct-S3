@@ -2,6 +2,7 @@
 using InterfacePolyStruct_S3.Entities;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace InterfacePolyStruct_S3
 {
@@ -9,8 +10,8 @@ namespace InterfacePolyStruct_S3
     {
         static void Main()
         {
-            ArrayList temperatures = new ArrayList();
-            // Initialize random number generator.
+            List<Temperature> temperatures = new List<Temperature>();
+            // random number generator
             Random rnd = new Random();
 
             // Generate 10 temperatures between 0 and 100 randomly.
@@ -19,7 +20,7 @@ namespace InterfacePolyStruct_S3
                 int celsius = rnd.Next(0, 100);
                 int fahrenheit = rnd.Next(0, 456);
 
-                Temperature temp = new Temperature(celsius, fahrenheit, "test");
+                Temperature temp = new Temperature(celsius, fahrenheit);
 
                 temperatures.Add(temp);
             }
@@ -32,22 +33,23 @@ namespace InterfacePolyStruct_S3
                 Console.WriteLine(temp.Celsius);
             }
 
+            // Compare test
+            Temperature temptest = new Temperature(18, 23);
+            Temperature otherTest = new Temperature(19, 24);
+            Console.WriteLine($"compare: {temptest.CompareTo(otherTest)}");
 
-            Temperature temptest = new Temperature(18, 23, "test");
-            Temperature otherTest = new Temperature(19, 24, "test");
-            Console.WriteLine(temptest.CompareTo(otherTest));
-
+            // clone test
             Temperature cloneTest = (Temperature)temptest.Clone();
             Console.WriteLine(temptest.Celsius);
             Console.WriteLine(cloneTest.Celsius);
 
             // Equals testing
-            Temperature objOne = new Temperature(1, 2, "test");
-            object objTwo = new Temperature(1, 2, "test");
+            Temperature objOne = new Temperature(1, 2);
+            object objTwo = new Temperature(1, 2);
             Console.WriteLine("objOne Equals objTwo: " + objOne.Equals(objTwo));
             Console.WriteLine(objOne.ToString());
 
-            Console.WriteLine(objTwo.GetHashCode());
+            Console.WriteLine($"Hashcode for objTwo: {objTwo.GetHashCode()}");
         }
     }
 }

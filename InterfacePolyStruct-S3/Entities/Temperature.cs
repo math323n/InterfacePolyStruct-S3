@@ -2,18 +2,17 @@
 
 namespace InterfacePolyStruct_S3.Entities
 {
-    public class Temperature: IEquatable<Temperature>, IComparable, ICloneable
+    public class Temperature: IEquatable<Temperature>, IComparable<object>, ICloneable
     {
 
         protected double celsius;
         protected double fahrenheit;
         protected string text;
 
-        public Temperature(double celsius, double fahrenheit, string text)
+        public Temperature(double celsius, double fahrenheit)
         {
             Celsius = celsius;
             Fahrenheit = fahrenheit;
-            Text = text;
         }
 
         public double Celsius
@@ -46,7 +45,8 @@ namespace InterfacePolyStruct_S3.Entities
         {
             get
             {
-                return text;
+
+                return GetText();
             }
 
             set
@@ -131,6 +131,7 @@ namespace InterfacePolyStruct_S3.Entities
         /// <returns></returns>
         public override string ToString()
         {
+
             // Return complete info
             return $"Celsius: {celsius}\n" +
                 $"Fahrenheit: {fahrenheit}\n" +
@@ -157,6 +158,43 @@ namespace InterfacePolyStruct_S3.Entities
                 hash = (hash * 16777619) ^ text.GetHashCode();
                 return hash;
             }
+        }
+
+        private string GetText()
+        {
+            if(Celsius < -30)
+            {
+                return "Winter is Coming";
+            }
+            else if(celsius >= -30 && celsius < -10)
+            {
+                return "Life on Planet Rossem";
+            }
+            else if(Celsius >= -10 && celsius < 0)
+            {
+                return "We are home by Christmas";
+            }
+            else if(Celsius >= 0 && celsius < 10)
+            {
+                return "Cold";
+            }
+            else if(Celsius >= 10 && celsius < 20)
+            {
+                return "Temperate";
+            }
+            else if(Celsius >= 20 && celsius < 30)
+            {
+                return "Os lige nu";
+            }
+            else if(Celsius >= 30 && celsius < 40)
+            {
+                return "Os lige om lidt";
+            }
+            else
+            {
+                return "Blazing heart of the Sun";
+            }
+
         }
         #endregion
     }
