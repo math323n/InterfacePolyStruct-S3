@@ -133,9 +133,9 @@ namespace InterfacePolyStruct_S3.Entities
         {
 
             // Return complete info
-            return $"Celsius: {celsius}\n" +
-                $"Fahrenheit: {fahrenheit}\n" +
-                $"Text: {text}";
+            return $"Celsius: {Celsius}\n" +
+                $"Fahrenheit: {Fahrenheit}\n" +
+                $"Text: {Text}";
         }
 
         /// <summary>
@@ -153,9 +153,9 @@ namespace InterfacePolyStruct_S3.Entities
                 int hash = (int)2166136261;
 
                 // Multiply hash with a second prime number and add each fields hash code
-                hash = (hash * 16777619) ^ celsius.GetHashCode();
-                hash = (hash * 16777619) ^ fahrenheit.GetHashCode();
-                hash = (hash * 16777619) ^ text.GetHashCode();
+                hash = (hash * 16777619) ^ Celsius.GetHashCode();
+                hash = (hash * 16777619) ^ Fahrenheit.GetHashCode();
+                hash = (hash * 16777619) ^ Text.GetHashCode();
                 return hash;
             }
         }
@@ -166,27 +166,27 @@ namespace InterfacePolyStruct_S3.Entities
             {
                 return "Winter is Coming";
             }
-            else if(celsius >= -30 && celsius < -10)
+            else if(celsius >= -30 && Celsius < -10)
             {
                 return "Life on Planet Rossem";
             }
-            else if(Celsius >= -10 && celsius < 0)
+            else if(Celsius >= -10 && Celsius < 0)
             {
                 return "We are home by Christmas";
             }
-            else if(Celsius >= 0 && celsius < 10)
+            else if(Celsius >= 0 && Celsius < 10)
             {
                 return "Cold";
             }
-            else if(Celsius >= 10 && celsius < 20)
+            else if(Celsius >= 10 && Celsius < 20)
             {
                 return "Temperate";
             }
-            else if(Celsius >= 20 && celsius < 30)
+            else if(Celsius >= 20 && Celsius < 30)
             {
                 return "Os lige nu";
             }
-            else if(Celsius >= 30 && celsius < 40)
+            else if(Celsius >= 30 && Celsius < 40)
             {
                 return "Os lige om lidt";
             }
