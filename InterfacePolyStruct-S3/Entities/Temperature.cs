@@ -1,11 +1,8 @@
 ﻿using System;
 
-
-
-
 namespace InterfacePolyStruct_S3.Entities
 {
-    public class Temperature: Object, IEquatable<object>, IComparable, ICloneable
+    public class Temperature: IEquatable<Temperature>, IComparable, ICloneable
     {
 
         protected double celsius;
@@ -96,9 +93,70 @@ namespace InterfacePolyStruct_S3.Entities
 
         }
 
-        public bool Equals( Temperature other)
+        /// <summary>
+        /// Equals method to check for same objects
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(Temperature other)
         {
-            throw new NotImplementedException();
+            // Null check
+            if(other == null)
+            {
+                return false;
+            }
+            // If the same
+            if(ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            // Return
+            return string.Equals(text, other.text) && celsius == other.celsius && fahrenheit == other.fahrenheit;
+        }
+
+        // Override for handling "object" type
+        public override bool Equals(object obj)
+        {
+            // If obj is temperature
+            if(obj is Temperature temp)
+            {
+                return Equals(temp);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Overrides ToString()
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            // Return complete info
+            return $"Celsius: {celsius}\n" +
+                $"Fahrenheit: {fahrenheit}\n" +
+                $"Text: {text}";
+        }
+
+        /// <summary>
+        /// Overrides GetHashCode()
+        /// </summary>
+        /// <returns Hashcode></returns>
+        public override int GetHashCode()
+        {
+            // "unchecked" Supress overflow 
+            unchecked
+            {
+
+                // Method Two
+                // int to store hash
+                int hash = (int)2166136261;
+
+                // Multiply hash with a second prime number and add each fields hash code
+                hash = (hash * 16777619) ^ celsius.GetHashCode();
+                hash = (hash * 16777619) ^ fahrenheit.GetHashCode();
+                hash = (hash * 16777619) ^ text.GetHashCode();
+                return hash;
+            }
         }
         #endregion
     }
